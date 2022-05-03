@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class StateUpgrade : MonoBehaviour
 {
+    //This controls the openeing and closing of the stats pannel at the ruin.
+
+    
     public GameObject KeyUI;
     public GameObject StatUI;
 
+    bool isKeyActive;
     bool statActive;
 
     void Update()
@@ -17,14 +21,15 @@ public class StateUpgrade : MonoBehaviour
 
         if(playerCheck.collider.tag == "Player"){
             KeyUI.SetActive(true);
+            isKeyActive = true;
             //Debug.Log("popped up");
         } else{
             KeyUI.SetActive(false);
-        } 
+        }
 
-        if(Input.GetKeyDown(KeyCode.E) && playerCheck.collider.tag == "Player"){
+        if(Input.GetKeyDown(KeyCode.E) && playerCheck.collider.tag == "Player" && isKeyActive){
 
-            Debug.Log("stats UI active");
+            //Debug.Log("stats UI active");
 
             StatUI.SetActive(true);
             statActive = true;

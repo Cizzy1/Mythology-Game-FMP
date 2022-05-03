@@ -28,4 +28,12 @@ public class Campfire_Heal : MonoBehaviour
             playerCheck.collider.GetComponent<PlayerHealth>().Health += hpGain;
         }
     }
+
+    void ClearRadius(){
+        RaycastHit2D EnemyCheck = Physics2D.CircleCast(transform.position, 2f, Vector2.up);
+
+        if(EnemyCheck.collider.tag == "Enemy"){
+            Destroy(EnemyCheck.collider);
+        }
+    }
 }
