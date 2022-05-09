@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
         if(Health <= 0){
             Debug.Log("Player dead");
             Destroy(this.gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
