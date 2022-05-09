@@ -5,22 +5,24 @@ using UnityEngine.UI;
 
 public class Mockscript : MonoBehaviour
 {
-    public Text Mock;
-    int num = 1;
+    /* public Text Mock;
+    private int currency;
     int add = 1;
 
     void Start(){
-        Mock.text = PlayerPrefs.GetInt("Count", 0).ToString();
+        Debug.Log(PlayerPrefs.GetInt("Count").ToString());
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.I)){
-            num += add; 
+            currency += add;
         }
-        Mock.text = num.ToString();
-        PlayerPrefs.SetInt("Count", num);
+        PlayerPrefs.SetInt("Count", currency);
 
-    }
+        Debug.Log(currency.ToString());
+
+        PlayerPrefs.Save();
+    } */
 }

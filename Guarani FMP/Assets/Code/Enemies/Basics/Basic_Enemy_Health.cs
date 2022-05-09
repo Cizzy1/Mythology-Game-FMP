@@ -14,6 +14,7 @@ public class Basic_Enemy_Health : MonoBehaviour
         if(Health <= 0){
             Destroy(this.gameObject);
             Player.GetComponent<Currency_system>().Currency += Drop;
+            Debug.Log("Given currecny");
         }
     }
 }

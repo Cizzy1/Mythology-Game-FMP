@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     float timetoAttack = 1.5f;
     float AttackRate = 1.5f;
 
+    public Camera cam; 
+
     public LayerMask EnemyLayer;
 
     void Start()
@@ -45,5 +47,14 @@ public class PlayerController : MonoBehaviour
             timetoAttack = Time.time + AttackRate;
             EnemyCheck.collider.GetComponent<Basic_Enemy_Health>().Health -= damage;
         }
+    }
+
+    void Bow(){
+
+        Vector3 mousePos = Input.mousePosition;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+
+        //RaycastHit2D BowRay = Physics2D.Raycast(transform);
     }
 }
