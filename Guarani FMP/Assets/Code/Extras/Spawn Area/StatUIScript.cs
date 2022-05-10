@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateUpgrade : MonoBehaviour
+public class StatUIScript : MonoBehaviour
 {
     //This controls the openeing and closing of the stats pannel at the ruin.
-
-    
     public GameObject KeyUI;
     public GameObject StatUI;
 
     bool isKeyActive;
     bool statActive;
+    bool RuinActive;
+
+    /* void Start(){
+        var test1 = Player.GetComponent<Currency_system>();
+    } */
 
     void Update()
     {
@@ -30,7 +33,6 @@ public class StateUpgrade : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && playerCheck.collider.tag == "Player" && isKeyActive){
 
             //Debug.Log("stats UI active");
-
             StatUI.SetActive(true);
             statActive = true;
             KeyUI.SetActive(false);

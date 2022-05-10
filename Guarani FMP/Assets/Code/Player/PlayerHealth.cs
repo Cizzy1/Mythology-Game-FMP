@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public float MaxHP = 50f;
     int MinHP = 0;
     public Text Healthtxt;
+    public Text MaxHp;
 
     public GameObject PlayerPre;
     public Transform SpawnPoint;
@@ -21,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
     {
         //Basic not staying health 
         Healthtxt.text = ("HP: " + Health.ToString());
+
+        MaxHp.text = ("Max HP: " + MaxHP.ToString());
 
         DeathCheck();
         TestDamage();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask EnemyLayer;
 
+    public Text Dmg_AXE;
+
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
         movement();
         Attack();
 
+        Dmg_AXE.text = ("Max Dmg: " + damage.ToString());
     }
 
     void movement(){
