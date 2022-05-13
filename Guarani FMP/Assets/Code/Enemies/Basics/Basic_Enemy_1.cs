@@ -7,7 +7,7 @@ public class Basic_Enemy_1 : MonoBehaviour
     public Transform player;
 
     int Damage = 10;
-    float speed = .5f;
+    public float speed = .5f;
     float nextAttack = 2f;
     float attackRate = 2f;
 

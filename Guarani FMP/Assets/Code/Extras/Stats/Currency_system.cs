@@ -18,7 +18,7 @@ public class Currency_system : MonoBehaviour
     void Update()
     {
         PlayerPrefs.SetFloat(Key, Currency);
-        Amount.text = Currency.ToString();
+        Amount.text = "₲:" + Currency.ToString();
         //Debug.Log(Currency.ToString());
         PlayerPrefs.Save();
     }

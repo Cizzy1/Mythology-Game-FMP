@@ -26,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
         MaxHp.text = ("Max HP: " + MaxHP.ToString());
 
         DeathCheck();
-        TestDamage();
 
         //Health caps
         if(Health > MaxHP){
@@ -35,6 +34,11 @@ public class PlayerHealth : MonoBehaviour
         } else if(Health < MinHP){
             Health = MinHP;
             Healthtxt.text = "YOU DIED";
+        }
+
+        if(Time.time > StartToRegen){
+            StartToRegen = Time.time + RegenRate;
+            HealthRegen();
         }
     }
 
@@ -46,9 +50,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void TestDamage(){
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Health -= Damage;
-        }
-    } 
+
+    float StartToRegen = 5f;
+    float RegenRate = 5f;
+
+    void HealthRegen(){
+        Health += 2f;
+    }
 }
