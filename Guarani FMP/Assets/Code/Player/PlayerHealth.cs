@@ -12,12 +12,6 @@ public class PlayerHealth : MonoBehaviour
     public Text Healthtxt;
     public Text MaxHp;
 
-    public GameObject PlayerPre;
-    public Transform SpawnPoint;
-
-    float Damage = 10f;
-
-
     void Update()
     {
         //Basic not staying health 
@@ -33,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
             Healthtxt.text = Health.ToString();
         } else if(Health < MinHP){
             Health = MinHP;
-            Healthtxt.text = "YOU DIED";
         }
 
         if(Time.time > StartToRegen){
@@ -49,7 +42,6 @@ public class PlayerHealth : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-
 
     float StartToRegen = 5f;
     float RegenRate = 5f;
