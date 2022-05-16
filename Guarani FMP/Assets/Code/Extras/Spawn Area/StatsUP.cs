@@ -20,11 +20,11 @@ public class StatsUP : MonoBehaviour
 
     public void UpDmg_AXE(){
         var cash = Player.GetComponent<Currency_system>();
-        var dmg = Player.GetComponent<PlayerController>();
+        var dmg = Player.GetComponent<PlayerCombat>();
 
         if(cash.Currency > 0){
             cash.Currency -= 1;
-            dmg.damage += 10;
+            dmg.Damage += 10;
             Debug.Log("dmg +10");
         }
     }

@@ -5,60 +5,71 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    int Speed = 7;
-    Vector2 mov;
 
-    public float damage = 25f;
-    float timetoAttack = 1.5f;
-    float AttackRate = 1.5f;
+    [Header("Player movement")]
+    public Rigidbody2D rb;
+    public float JumpVelocity;
+    public float moveSpeed;
 
-    public Camera cam; 
 
-    public LayerMask EnemyLayer;
+    //Extras
+    public float Height = 2f;
+    bool canDoublejump;
+    public BoxCollider2D box2D;
+    bool facingRight = true;
+    RaycastHit2D Hit2D;
+    [SerializeField] LayerMask groundlayerMask;
 
-    public Text Dmg_AXE;
-
-    void Start()
+    private void Update()
     {
-        rb = this.gameObject.GetComponent<Rigidbody2D>();
-    }
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded()){
+            float JumpVelocity = 6f;
+            rb.velocity = Vector2.up * JumpVelocity;
 
-    void Update()
-    {
-        //Movement
-        mov.x = Input.GetAxisRaw("Horizontal");
-        mov.y = Input.GetAxisRaw("Vertical");
-
-        movement();
-        Attack();
-
-        Dmg_AXE.text = ("Max Dmg: " + damage.ToString());
-    }
-
-    void movement(){
-        rb.MovePosition(rb.position + mov * Speed * Time.fixedDeltaTime);
-    }
-
-    void Attack(){
-        RaycastHit2D EnemyCheck = Physics2D.CircleCast(transform.position, 2f, Vector2.up, EnemyLayer); 
-
-        //Debug.Log(EnemyCheck.collider.name.ToString());
-
-        if(EnemyCheck.collider.tag == "Enemy" && Input.GetMouseButtonDown(0) && Time.time > timetoAttack){
-            Debug.Log("enemy attacked");
-
-            timetoAttack = Time.time + AttackRate;
-            EnemyCheck.collider.GetComponent<Basic_Enemy_Health>().Health -= damage;
+            canDoublejump = true;
+        } else if(canDoublejump && Input.GetKeyDown(KeyCode.Space)){
+            float DJumpVelocity = 5f;
+            rb.velocity = Vector2.up * DJumpVelocity;
+            canDoublejump = false;
         }
+
+        walk();
     }
 
-    void Bow(){
+    private void walk(){
+        if(Input.GetKey(KeyCode.A)){
+            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+        }else{
+            if(Input.GetKey(KeyCode.D)){
+                rb.velocity = new Vector2(+moveSpeed, rb.velocity.y);
+            }else{
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+        }
 
-        Vector3 mousePos = Input.mousePosition;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+        if(rb.velocity.x > 0 && !facingRight)
+        {
+            Flip();
+            
+        }
+        else if(rb.velocity.x < 0 && facingRight)
+        {
+            Flip();
+        }
 
-        //RaycastHit2D BowRay = Physics2D.Raycast(transform);
+        Debug.DrawRay(transform.position, Vector2.down, Color.magenta);    
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 playerScale = transform.localScale;
+        playerScale.x *= -1;
+        transform.localScale = playerScale;
+    }
+
+
+    private bool isGrounded(){
+        return Physics2D.BoxCast(box2D.bounds.center, box2D.bounds.size, 0f, Vector2.down, Height, groundlayerMask);
     }
 }
