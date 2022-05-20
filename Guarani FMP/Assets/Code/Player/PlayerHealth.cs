@@ -12,12 +12,24 @@ public class PlayerHealth : MonoBehaviour
     public Text Healthtxt;
     public Text MaxHp;
 
+    public Slider HealthBar;
+
+    void Start(){
+        //HealthBar.setHealth(Health);
+    }
+
+
     void Update()
     {
         //Basic not staying health 
         Healthtxt.text = ("HP: " + Health.ToString());
 
         MaxHp.text = ("Max HP: " + MaxHP.ToString());
+
+
+        //HealthBar.SetMaxHealth(MaxHp);
+        //HealthBar.setHealth(Health);
+
 
         DeathCheck();
 
@@ -43,10 +55,24 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+//////////////////----------------------------------
+
     float StartToRegen = 5f;
     float RegenRate = 5f;
 
     void HealthRegen(){
         Health += 2f;
     }
+
+//////////////////----------------------------------
+
+
+    public void SetMaxHealth(){
+        //slider.maxValue = health.MaxHP;
+    }
+
+    public void setHealth(){
+        //slider.value = health.Health;
+    }
+
 }
