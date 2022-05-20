@@ -19,6 +19,7 @@ public class DartSummon : MonoBehaviour
         transform.up = direction;
         
         if (Input.GetMouseButton(1)){
+            bowChargeTime += Time.deltaTime;
         }
 
         if(bowChargeTime >= bowMax){
