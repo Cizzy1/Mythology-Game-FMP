@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public GameObject Player;
-    void OnCollisionEnter2D(Collider2D col){
-        var BowDmg = Player.GetComponent<DartSummon>().BowDamage; 
-        col.gameObject.GetComponent<Basic_Enemy_Health>().Health -= BowDmg; 
+    public float Dart_Damage = 10;
+    void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.CompareTag("Enemy")){
+            col.gameObject.GetComponent<Basic_Enemy_Health>().Health -= Dart_Damage;
+        } 
+
+        
         Destroy(this.gameObject);
     }
 }
