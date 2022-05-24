@@ -13,10 +13,10 @@ public class DartSummon : MonoBehaviour
     float bowMax = 1;
 
     void Update(){
-        Vector2 bowPosition = transform.position;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - bowPosition;
-        transform.up = direction;
+        Vector2 bowPosition = transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePosition - bowPosition;
+        transform.up = direction;
         
         if (Input.GetMouseButton(1)){
             bowChargeTime += Time.deltaTime;

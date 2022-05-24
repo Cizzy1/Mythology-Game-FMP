@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     bool facingRight = true;
     RaycastHit2D Hit2D;
     [SerializeField] LayerMask groundlayerMask;
+    private float movement_test;
+
+
+    //Animations
+    public Animator anim;
 
     private void Update()
     {
@@ -34,6 +39,18 @@ public class PlayerController : MonoBehaviour
         }
 
         walk();
+        movement_test = rb.velocity.x;
+        var JumpVEV = rb.velocity.y; 
+
+        anim.SetFloat("isRunning", Mathf.Abs(movement_test));
+
+        if(JumpVEV <= .1f){
+            anim.SetBool("isJump", true);    
+        }
+
+        if(JumpVEV >= -.1){
+            anim.SetBool("isLanding", true);    
+        }
     }
 
     private void walk(){

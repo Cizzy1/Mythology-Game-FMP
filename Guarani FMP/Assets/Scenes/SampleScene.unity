@@ -770,7 +770,7 @@ Transform:
   m_GameObject: {fileID: 470305678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.2288995, y: 0.781, z: -0.5}
-  m_LocalScale: {x: 1.4571, y: 1.4571, z: 1.4571}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1240803448035792631}
   m_RootOrder: 1
@@ -792,7 +792,7 @@ MonoBehaviour:
   shotPoint: {fileID: 470305679}
   bowChargeTime: 5
   BowDamage: 10
-  offset: {x: 0, y: 1.5, z: -1}
+  offset: {x: 0, y: 1.3, z: -1}
   SmoothSpeed: 0.25
   Player: {fileID: 1240803448035792631}
 --- !u!212 &470305681
@@ -836,8 +836,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.1462264, b: 0.89444304, a: 1}
+  m_Sprite: {fileID: 5343443428652178998, guid: f981aaadbd7f139449a9b8b7895d3f07, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -30127,6 +30127,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9067560351467101617, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
   m_PrefabInstance: {fileID: 7849292772532816575}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1240803448035792655
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240803448035792654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 629aa72ab5f40de4db0eef536139ee33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7849292772532816575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30178,6 +30197,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9067560351467101258, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f028e964a3411004e9964589cd423e96, type: 2}
+    - target: {fileID: 9067560351467101259, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6427095798360742901, guid: 7f7111c7e5c454c419093e7861f4ace6, type: 3}
     - target: {fileID: 9067560351467101259, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -30190,10 +30217,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9067560351467101259, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9067560351467101617, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9067560351467101620, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1240803448035792655}
     - target: {fileID: 9067560351467101621, guid: 7c6238d1a4e57da47903549b5a8be5f1, type: 3}
       propertyPath: m_Material
       value: 
