@@ -12,8 +12,6 @@ public class PlayerHealth : MonoBehaviour
     public Text Healthtxt;
     public Text MaxHp;
 
-    public Slider HealthBar;
-
     void Start(){
         //HealthBar.setHealth(Health);
     }
@@ -26,10 +24,8 @@ public class PlayerHealth : MonoBehaviour
 
         MaxHp.text = ("Max HP: " + MaxHP.ToString());
 
-
-        //HealthBar.SetMaxHealth(MaxHp);
-        //HealthBar.setHealth(Health);
-
+        HealthBarFiller();
+        lerpSpeed = 3f * Time.deltaTime;
 
         DeathCheck();
 
@@ -67,12 +63,10 @@ public class PlayerHealth : MonoBehaviour
 //////////////////----------------------------------
 
 
-    public void SetMaxHealth(){
-        //slider.maxValue = health.MaxHP;
-    }
+    public Image HealthBar;
+    public float lerpSpeed;
 
-    public void setHealth(){
-        //slider.value = health.Health;
+    void HealthBarFiller(){
+        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, Health / MaxHP, lerpSpeed);
     }
-
 }

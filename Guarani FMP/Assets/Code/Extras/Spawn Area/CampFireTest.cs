@@ -18,18 +18,18 @@ public class CampFireTest : MonoBehaviour
 
         RaycastHit2D playerCheck = Physics2D.CircleCast(transform.position, 2f, Vector2.up, playersMask);
 
-        Debug.Log(playerCheck.collider.gameObject.name.ToString());
+        //Debug.Log(playerCheck.collider.gameObject.name.ToString());
 
         if(playerCheck.collider.gameObject.CompareTag("Player")){
             DetectPlayer = true;
-            Debug.Log("Player in heal zone");
+            //Debug.Log("Player in heal zone");
         } else{
             DetectPlayer = false;
         }
 
         if(Time.time > firstTick && DetectPlayer){
             firstTick = Time.time + TickRate;
-            Debug.Log("Player healed");
+            //Debug.Log("Player healed");
             playerCheck.collider.GetComponent<PlayerHealth>().Health += hpGain;
         }
 

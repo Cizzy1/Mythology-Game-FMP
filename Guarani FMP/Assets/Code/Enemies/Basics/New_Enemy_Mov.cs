@@ -9,6 +9,8 @@ public class New_Enemy_Mov : MonoBehaviour
     public float Movespeed;
     Rigidbody2D _rb;
 
+    public Animator anim;
+
 
     void Start(){
         _rb = GetComponent<Rigidbody2D>();
@@ -22,6 +24,9 @@ public class New_Enemy_Mov : MonoBehaviour
         } else{
             Stop();
         }
+
+        var Move = _rb.velocity.x;
+        anim.SetFloat("isRunning", Mathf.Abs(Move));
     }
 
     void ChasePlayer(){
