@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9067560351467101623}
   - component: {fileID: 9067560351467101622}
   - component: {fileID: 9067560351467101257}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f028e964a3411004e9964589cd423e96, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   groundlayerMask:
     serializedVersion: 2
     m_Bits: 8
+  anim: {fileID: 0}
 --- !u!114 &9067560351467101623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9067560353591723951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

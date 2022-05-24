@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Campfire_Heal : MonoBehaviour
+public class CampFireTest : MonoBehaviour
 {
     float hpGain = 5f;
 

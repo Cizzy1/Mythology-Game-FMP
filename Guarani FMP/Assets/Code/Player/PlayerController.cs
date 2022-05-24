@@ -39,18 +39,15 @@ public class PlayerController : MonoBehaviour
         }
 
         walk();
+
         movement_test = rb.velocity.x;
-        var JumpVEV = rb.velocity.y; 
-
+        var JumpVEV = rb.velocity.y;
         anim.SetFloat("isRunning", Mathf.Abs(movement_test));
+        
+        anim.SetBool("Jump", !isGrounded());
 
-        if(JumpVEV <= .1f){
-            anim.SetBool("isJump", true);    
-        }
+        anim.SetFloat("yVelocity", JumpVEV);
 
-        if(JumpVEV >= -.1){
-            anim.SetBool("isLanding", true);    
-        }
     }
 
     private void walk(){
