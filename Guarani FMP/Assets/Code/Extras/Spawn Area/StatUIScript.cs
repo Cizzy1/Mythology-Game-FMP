@@ -42,4 +42,8 @@ public class StatUIScript : MonoBehaviour
     public void CloseStats(){
         StatUI.SetActive(false);
     }
+
+    void OnGizmosDraw(){
+        Gizmos.DrawWireSphere(transform.position, 2);
+    }
 }
