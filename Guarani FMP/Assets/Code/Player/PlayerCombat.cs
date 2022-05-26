@@ -4,30 +4,56 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public float attackrange = 0.5f;
+    public float attackrange = 2f;
     public Transform attackpoint;
     public float Damage = 25f;
-    public float StartAttack = 1.5f;
-    private float AttackRate = 1.5f;
+    float StartAttack = 1.5f;
+    float AttackRate = 1.5f;
     public LayerMask EnemyLayers;
+    private Rigidbody2D _rb;
 
     public Animator anim;
 
+    bool HasAttacked;
+    bool IsMoving;
+
+    void Start(){
+        _rb = this.GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {            
-        if(Input.GetMouseButton(0) && Time.time > StartAttack){
-            Debug.Log("Has attacked");
-            anim.SetBool("hasAttacked", true);
-            Attack();
+        if(Input.GetKeyDown(KeyCode.Mouse0) && Time.time > StartAttack){
+            HasAttacked = true;
+            if(HasAttacked){
+                StartAttack = Time.time + AttackRate;
+                Debug.Log("Has attacked");
+                Attack();
+            }
+            
+        } else{
+            HasAttacked = false;
+        }
+
+        if(_rb.velocity.x <= 0.5f){
+            IsMoving = true;
+        } else{
+            IsMoving = false;
+        }
+
+        if(IsMoving && HasAttacked){
+            _rb.velocity = Vector2.zero;
         }
     }
 
     void Attack()
     {
-        Collider2D[] hitplayer = Physics2D.OverlapCircleAll(attackpoint.position, attackrange, EnemyLayers);     
-        foreach(Collider2D player in hitplayer)
+        anim.SetTrigger("hasAttacked");
+        Collider2D[] hitenemy = Physics2D.OverlapCircleAll(attackpoint.position, attackrange, EnemyLayers);
+        foreach(Collider2D enemy in hitenemy)
         {
-            player.GetComponent<Basic_Enemy_Health>().Health -= Damage;
+            enemy.GetComponent<Basic_Enemy_Health>().Health -= Damage;
+            Debug.Log("Enemy hit");
         }
     }
     void OnDrawGizmosSelected()

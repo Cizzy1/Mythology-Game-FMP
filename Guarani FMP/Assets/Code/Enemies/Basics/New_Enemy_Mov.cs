@@ -4,42 +4,90 @@ using UnityEngine;
 
 public class New_Enemy_Mov : MonoBehaviour
 {
-    public Transform Player;
-    public float agroRange; 
-    public float Movespeed;
-    Rigidbody2D _rb;
+    [Header("Petrolling")]
+    [SerializeField] float moveSpeed;
+    private float moveDiection = 1;
+    private bool facingRight = true;
+    [SerializeField] Transform GroundCheck;
+    [SerializeField] Transform WallCheck;
+    [SerializeField] float circleRadius;
+    [SerializeField] LayerMask groundLayer;
+    private bool CheckingGround;
+    private bool CheckingWall;
 
+    [Header("Extras")]
+    private Rigidbody2D rb;
     public Animator anim;
 
-
     void Start(){
-        _rb = GetComponent<Rigidbody2D>();
-    } 
+        rb = this.GetComponent<Rigidbody2D>();
+    }
 
     void Update(){
-        float Dis = Vector2.Distance(transform.position, Player.position);
 
-        if(Dis < agroRange){
-            ChasePlayer();
-        } else{
-            Stop();
-        }
+    }
 
-        var Move = _rb.velocity.x;
+    void FixedUpdate(){
+
+        var Move = rb.velocity.x;
         anim.SetFloat("isRunning", Mathf.Abs(Move));
+
+
+        CheckingGround = Physics2D.OverlapCircle(GroundCheck.position, circleRadius, groundLayer);
+        CheckingWall = Physics2D.OverlapCircle(WallCheck.position, circleRadius, groundLayer);
+
+        Petrolling();
+        Detection();
+
+        CheckingPlayer = Physics2D.OverlapBox(PlayerCheck.position, boxSize, 0, PlayerMask);
     }
 
-    void ChasePlayer(){
-        if(transform.position.x < Player.position.x){
-            _rb.velocity = new Vector2(Movespeed, 0);
-            transform.localScale = new Vector2(1, 1);
-        }else if(transform.position.x >  Player.position.x){
-            _rb.velocity = new Vector2(-Movespeed, 0);
-            transform.localScale = new Vector2(-1, 1);
+    void Petrolling(){
+
+        if(!CheckingGround || CheckingWall){
+            if(facingRight){
+                Flip();
+            }
+            else if(!facingRight){
+                Flip();
+            }
         }
+
+        rb.velocity = new Vector2(moveSpeed * moveDiection, rb.velocity.y);
     }
 
-    void Stop(){
-        _rb.velocity = Vector2.zero;
+//Attacking
+//////////////////----------------------------------
+
+    [Header("Attack")]
+    [SerializeField] Transform PlayerCheck;
+    [SerializeField] LayerMask PlayerMask;
+    [SerializeField] float attackRange;
+    [SerializeField] Transform Player;
+    [SerializeField] Vector2 boxSize;
+    private bool CheckingPlayer;
+
+    void Detection(){
+        float disFromPlayer = Player.position.x - transform.position.x;
+
+        if(CheckingPlayer){
+            
+        }
+
+    }
+
+    void Flip(){
+        moveDiection *= -1;
+        facingRight = !facingRight;
+        transform.Rotate(0, 180, 0);
+    }
+
+
+//Gizmos things
+//////////////////----------------------------------
+    void OnDrawGizmosSelected(){
+        Gizmos.DrawWireSphere(GroundCheck.position, circleRadius);
+        Gizmos.DrawWireSphere(WallCheck.position, circleRadius);
+        Gizmos.DrawWireCube(PlayerCheck.position, boxSize);
     }
 }
