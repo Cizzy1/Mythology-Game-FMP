@@ -12,8 +12,8 @@ public class StatsUP : MonoBehaviour
 
         if(cash.Currency > 0){
             cash.Currency -= 1;
+            cash.PlLvl += 1;
             health.MaxHP += 10;
-            health.Health += 10;
             Debug.Log("Health +10");
         }
     }
@@ -24,7 +24,20 @@ public class StatsUP : MonoBehaviour
 
         if(cash.Currency > 0){
             cash.Currency -= 1;
+            cash.PlLvl += 1;
             dmg.Damage += 10;
+            Debug.Log("dmg +10");
+        }
+    }
+
+    public void UpDmg_Dart(){
+        var cash = Player.GetComponent<Currency_system>();
+        var dmg = Player.GetComponent<DartSummon>();
+
+        if(cash.Currency > 0){
+            cash.Currency -= 1;
+            cash.PlLvl += 1;
+            dmg.BowDamage += 10;
             Debug.Log("dmg +10");
         }
     }

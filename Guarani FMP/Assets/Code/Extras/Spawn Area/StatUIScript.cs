@@ -8,21 +8,20 @@ public class StatUIScript : MonoBehaviour
     public GameObject KeyUI;
     public GameObject StatUI;
 
+    [SerializeField] LayerMask Player;
+    public float circleRadius;
+    bool PlayerCheck;
+
     bool isKeyActive;
     bool statActive;
     bool RuinActive;
 
-    /* void Start(){
-        var test1 = Player.GetComponent<Currency_system>();
-    } */
-
     void Update()
     {
-        RaycastHit2D playerCheck = Physics2D.CircleCast(transform.position, 2f, Vector2.up);
+        PlayerCheck = Physics2D.OverlapCircle(transform.position, circleRadius, Player);
 
-        //Debug.Log(playerCheck.ToString());
 
-        if(playerCheck.collider.tag == "Player"){
+        if(PlayerCheck){
             KeyUI.SetActive(true);
             isKeyActive = true;
             //Debug.Log("popped up");
@@ -30,7 +29,7 @@ public class StatUIScript : MonoBehaviour
             KeyUI.SetActive(false);
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && playerCheck.collider.tag == "Player" && isKeyActive){
+        if(Input.GetKeyDown(KeyCode.E) && PlayerCheck && isKeyActive){
 
             //Debug.Log("stats UI active");
             StatUI.SetActive(true);
@@ -43,7 +42,10 @@ public class StatUIScript : MonoBehaviour
         StatUI.SetActive(false);
     }
 
-    void OnGizmosDraw(){
-        Gizmos.DrawWireSphere(transform.position, 2);
+
+//Gizmos
+//////////////////----------------------------------
+    void OnGizmosDrawSelected(){
+        Gizmos.DrawWireSphere(transform.position, circleRadius);
     }
 }

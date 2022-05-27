@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         //Basic not staying health 
-        Healthtxt.text = ("HP: " + Health.ToString());
+        Healthtxt.text = (Health.ToString());
 
         MaxHp.text = ("Max HP: " + MaxHP.ToString());
 

@@ -21,8 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundlayerMask;
     private float movement_test;
 
+    [Header("Audio")]
+    public AudioSource jump;
 
     //Animations
+    [Header("Animator")]
     public Animator anim;
 
     private void Update()
@@ -30,10 +33,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded()){
             float JumpVelocity = 6f;
             rb.velocity = Vector2.up * JumpVelocity;
-
+            jump.Play();
             canDoublejump = true;
         } else if(canDoublejump && Input.GetKeyDown(KeyCode.Space)){
             float DJumpVelocity = 5f;
+            jump.Play();
             rb.velocity = Vector2.up * DJumpVelocity;
             canDoublejump = false;
         }

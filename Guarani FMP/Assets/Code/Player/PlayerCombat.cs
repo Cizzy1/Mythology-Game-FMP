@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     float AttackRate = 1.5f;
     public LayerMask EnemyLayers;
     private Rigidbody2D _rb;
+
+    public Text MaxDamageAmount;
 
     public Animator anim;
 
@@ -44,6 +47,8 @@ public class PlayerCombat : MonoBehaviour
         if(IsMoving && HasAttacked){
             _rb.velocity = Vector2.zero;
         }
+
+        MaxDamageAmount.text = ("Max dmg: " + Damage.ToString());
     }
 
     void Attack()

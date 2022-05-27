@@ -15,6 +15,9 @@ public class Basic_Enemy_1 : MonoBehaviour
 
     bool AttackReady;
 
+    [Header("Audio")]
+    public AudioSource playerHurt;
+
     void Update()
     {
         AttackReady = false;
@@ -26,6 +29,7 @@ public class Basic_Enemy_1 : MonoBehaviour
             nextAttack = Time.time + attackRate;
             AttackReady = true;
             player.GetComponent<PlayerHealth>().Health -= Damage;
+            playerHurt.Play();
         }
     }
 }

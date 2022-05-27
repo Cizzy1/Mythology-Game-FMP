@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DartSummon : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class DartSummon : MonoBehaviour
     public float launchForce;
     public Transform shotPoint;
     public float bowChargeTime;
+
+    public Text BowDMG;
 
     public float BowDamage = 10f;
     float bowMax = 1;
@@ -30,6 +33,8 @@ public class DartSummon : MonoBehaviour
             Shoot();
             bowChargeTime = 0;
         }
+
+        BowDMG.text = ("Max DartDMG: " + BowDamage.ToString());
     }
     
     void Shoot(){

@@ -19,6 +19,11 @@ public class New_Enemy_Mov : MonoBehaviour
     private Rigidbody2D rb;
     public Animator anim;
 
+//Cancel out bools
+//////////////////----------------------------------
+    private bool isPetrolling;
+    private bool hasDetected;
+//////////////////----------------------------------
     void Start(){
         rb = this.GetComponent<Rigidbody2D>();
     }
@@ -28,6 +33,7 @@ public class New_Enemy_Mov : MonoBehaviour
     }
 
     void FixedUpdate(){
+        isPetrolling = true;
 
         var Move = rb.velocity.x;
         anim.SetFloat("isRunning", Mathf.Abs(Move));
@@ -36,8 +42,15 @@ public class New_Enemy_Mov : MonoBehaviour
         CheckingGround = Physics2D.OverlapCircle(GroundCheck.position, circleRadius, groundLayer);
         CheckingWall = Physics2D.OverlapCircle(WallCheck.position, circleRadius, groundLayer);
 
-        Petrolling();
-        Detection();
+        if(!CheckingPlayer && isPetrolling){
+            Debug.Log("Enemy petrolling");
+            Petrolling();
+        }
+        if(CheckingPlayer){
+            isPetrolling = false;
+            Debug.Log("Player deteted");
+            Detection();
+        }
 
         CheckingPlayer = Physics2D.OverlapBox(PlayerCheck.position, boxSize, 0, PlayerMask);
     }
@@ -46,9 +59,11 @@ public class New_Enemy_Mov : MonoBehaviour
 
         if(!CheckingGround || CheckingWall){
             if(facingRight){
+                //Debug.Log("Looking left [PETROLLING]");
                 Flip();
             }
             else if(!facingRight){
+                //Debug.Log("Looking right [PETROLLING]");
                 Flip();
             }
         }
@@ -69,11 +84,14 @@ public class New_Enemy_Mov : MonoBehaviour
 
     void Detection(){
         float disFromPlayer = Player.position.x - transform.position.x;
+        rb.velocity = new Vector2(moveSpeed * disFromPlayer, rb.velocity.y);
 
-        if(CheckingPlayer){
-            
+        //Debug.Log(rb.velocity.ToString());
+        
+        if(rb.velocity.x >= 0.01f && !facingRight){
+            //Debug.Log("Enemy has flipped [DETECTION]");
+            Flip();
         }
-
     }
 
     void Flip(){
