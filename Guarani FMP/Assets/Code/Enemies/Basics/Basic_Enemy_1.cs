@@ -6,7 +6,7 @@ public class Basic_Enemy_1 : MonoBehaviour
 {
     public Transform player;
 
-    int Damage = 10;
+    public int Damage = 10;
     float nextAttack = 2f;
     float attackRate = 2f;
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CampFireTest : MonoBehaviour
+public class Campfire12 : MonoBehaviour
 {
     float hpGain = 5f;
 
@@ -18,21 +18,20 @@ public class CampFireTest : MonoBehaviour
 
         RaycastHit2D playerCheck = Physics2D.CircleCast(transform.position, 2f, Vector2.up, playersMask);
 
-        //Debug.Log(playerCheck.collider.gameObject.name.ToString());
+        Debug.Log(playerCheck.collider.gameObject.name.ToString());
 
         if(playerCheck.collider.gameObject.CompareTag("Player")){
             DetectPlayer = true;
-            //Debug.Log("Player in heal zone");
+            Debug.Log("Player in heal zone");
         } else{
             DetectPlayer = false;
         }
 
         if(Time.time > firstTick && DetectPlayer){
             firstTick = Time.time + TickRate;
-            //Debug.Log("Player healed");
+            Debug.Log("Player healed");
             playerCheck.collider.GetComponent<PlayerHealth>().Health += hpGain;
         }
-
         ClearRadius();
     }
 
@@ -42,7 +41,7 @@ public class CampFireTest : MonoBehaviour
         if(EnemyCheck.collider.tag == "Enemy"){
             Destroy(EnemyCheck.collider);
         }
-    } 
+    }
 
     void OnDrawGizmos(){
         Gizmos.DrawWireSphere(transform.position, 2);

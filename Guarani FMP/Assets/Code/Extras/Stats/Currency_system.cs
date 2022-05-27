@@ -10,7 +10,7 @@ public class Currency_system : MonoBehaviour
     public Text Amount;
     public Text StoreAmount;
     public float Currency;
-    string Key = "Curent";
+    string Key = "Current";
 
     [Header("Level")]
     public Text level;
@@ -22,5 +22,6 @@ public class Currency_system : MonoBehaviour
         StoreAmount.text = "Currency: ₲ " + Currency.ToString();
 
         level.text = PlLvl.ToString();
+        //Debug.Log(PlLvl.ToString());
     }
 }

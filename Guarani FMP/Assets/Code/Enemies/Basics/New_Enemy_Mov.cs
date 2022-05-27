@@ -43,12 +43,12 @@ public class New_Enemy_Mov : MonoBehaviour
         CheckingWall = Physics2D.OverlapCircle(WallCheck.position, circleRadius, groundLayer);
 
         if(!CheckingPlayer && isPetrolling){
-            Debug.Log("Enemy petrolling");
+            //Debug.Log("Enemy petrolling");
             Petrolling();
         }
         if(CheckingPlayer){
             isPetrolling = false;
-            Debug.Log("Player deteted");
+            //Debug.Log("Player deteted");
             Detection();
         }
 
@@ -92,6 +92,7 @@ public class New_Enemy_Mov : MonoBehaviour
             //Debug.Log("Enemy has flipped [DETECTION]");
             Flip();
         }
+        
     }
 
     void Flip(){

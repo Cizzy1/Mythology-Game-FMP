@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
     float RegenRate = 5f;
 
     void HealthRegen(){
-        Health += 2f;
+        Health += 10f;
     }
 
 //////////////////----------------------------------

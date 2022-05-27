@@ -7,7 +7,7 @@ public class Basic_Enemy_Health : MonoBehaviour
     public GameObject Player;
     public float Health = 50f;
 
-    float Drop = 1f;
+    public float Drop = 1f;
 
     void Update()
     {
